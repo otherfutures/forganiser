@@ -1,9 +1,10 @@
 import os
 import shutil
+from datetime import datetime
 
 
-def move_files(path, music, videos, pictures, documents, applications, archives):
-    
+def move_files(path, music, loose_videos, pictures, programs, documents, applications, archives, subtitles, ebooks):
+
     music_ext = [
         ".mp3",
         ".m4a",
@@ -128,24 +129,33 @@ def move_files(path, music, videos, pictures, documents, applications, archives)
     files = os.listdir(path)
 
     for file in files:
+
         filepath = f"{path}/{file}"
         ext = os.path.splitext(filepath)[1].lower()
-        if ext in music_ext:
-            shutil.move(filepath, music)
-        elif ext in videos_ext:
-            shutil.move(filepath, loose_videos)
-        elif ext in pictures_ext:
-            shutil.move(filepath, pictures)
-        elif ext in programs_ext:
-            shutil.move(filepath, programs)
-        elif ext in documents_ext:
-            shutil.move(filepath, documents)
-        elif ext in applications_ext:
-            shutil.move(filepath, applications)
-        elif ext in archives_ext:
-            shutil.move(filepath, archives)
-        elif ext in subtitles_ext:
-            shutil.move(filepath, subtitles)
-        elif ext in ebooks_ext:
-            shutil.move(filepath, ebooks)
+
+        try:
+            if ext in music_ext:
+                shutil.move(filepath, music)
+            elif ext in videos_ext:
+                shutil.move(filepath, loose_videos)
+            elif ext in pictures_ext:
+                shutil.move(filepath, pictures)
+            elif ext in programs_ext:
+                shutil.move(filepath, programs)
+            elif ext in documents_ext:
+                shutil.move(filepath, documents)
+            elif ext in applications_ext:
+                shutil.move(filepath, applications)
+            elif ext in archives_ext:
+                shutil.move(filepath, archives)
+            elif ext in subtitles_ext:
+                shutil.move(filepath, subtitles)
+            elif ext in ebooks_ext:
+                shutil.move(filepath, ebooks)
+
+        except shutil.Error as e:
+            # If name collision, split the file name and extension, rename the file with current date & time
+            new_filepath = f"{path}/{os.path.splitext(file)[0]} ({datetime.now().strftime('%Y-%m-%d %H:%M:%S')}){ext}"
+            shutil.move(filepath, new_filepath)
+
     return 0
