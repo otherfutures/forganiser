@@ -26,18 +26,3 @@ Users can even choose the second option and directly provide the path to any oth
 After a path is selected, the program creates several subfolders inside the folder namely Music, Videos, Pictures, Documents, Application and Archives.
 
 It then sorts all the files present in the parent folder into several different groups based on their extensions and moves them in the respective subfolders.
-
-
-
-## Contributing
-
-I have included support for all the popular file extensions but if you find one missing for you, feel free to contribute.
-
-## Feedback
-
-If you have any feedback or bugs to report, please reach out to me at jigyasu@outlook.in
-
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
-
