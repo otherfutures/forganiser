@@ -1,7 +1,11 @@
 
 # Forganiser
 
-A nifty tool to sort your messy folders
+A nifty tool to sort your messy folders. Created by [@Cheesemaafia/@Jigyasu](https://github.com/cheesemaafia/forganiser). 
+
+This fork improves upon it a bit, by including more file extensions that will be automatically sorted & some more default folder categories/names such as ebooks & subtitles. It will also include error handling for filename collisions (currently in the process). 
+
+These changes are mostly done for my own use case, & I thought I might as well share them.
 
 
 ## Screenshots
@@ -23,24 +27,6 @@ After a path is selected, the program creates several subfolders inside the fold
 
 It then sorts all the files present in the parent folder into several different groups based on their extensions and moves them in the respective subfolders.
 
-
-## Installation
-
-Install Forganiser with pip
-
-```bash
-  pip install forganiser
-```
-
-## Usage
-
-```bash
-  forganiser
-```
-    
-## Authors
-
-- [@Jigyasu](https://www.github.com/cheesemaafia)
 
 
 ## Contributing
