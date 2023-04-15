@@ -3,7 +3,9 @@
 
 A nifty tool to sort your messy folders. Created by [@Cheesemaafia/@Jigyasu](https://github.com/cheesemaafia/forganiser). 
 
-This fork improves upon it a bit, by including more file extensions that will be automatically sorted & some more default folder categories/names such as ebooks & subtitles. It also has file name collision error handling that inserts the current date & time into the file name. 
+This fork improves upon it a bit, by including more file extensions that will be automatically sorted, along with a few more default folder categories/names such as ebooks & subtitles. 
+
+It also has file name collision error handling that inserts the current date & time into the file name (e.g. `duplicate title.jpg` would become `duplicate title (2023-01-01 12:00:00).jpg`. 
 
 These changes are mostly done for my own use case, & I thought I might as well share them.
 
