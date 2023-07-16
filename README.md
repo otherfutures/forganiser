@@ -6,8 +6,8 @@ This fork improves upon it a bit in the following ways:
 
 - includes more file extensions that will be automatically sorted
 - more default folder categories/names such as ebooks, comics, & subtitles.
-- being refactored to be a bit easier to add/remove folders if you want to customise it
-- file name collision error handling that inserts the current date & time into the file name (e.g. `duplicate title.jpg` would become `duplicate title (2023-01-01 12:00:00).jpg`
+- refactored to be a easier to add/remove folders if you want to customise it
+- file name collision error handling inserts current date & time into the file name (e.g. `duplicate title.jpg` would become `duplicate title (2023-01-01 12:00:00).jpg`
 - stronger cross OS compatibility written into it,
 - more documentation (the original was easy to understand & customise; I hope to keep it that way even after my edits).
 
