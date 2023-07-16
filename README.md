@@ -9,7 +9,7 @@ This fork improves upon it a bit in the following ways:
 - refactored to be a easier to add/remove folders if you want to customise it
 - file name collision error handling inserts current date & time into the file name (e.g. `duplicate title.jpg` would become `duplicate title (2023-01-01 12:00:00).jpg`
 - stronger cross OS compatibility written into it,
-- more documentation (the original was easy to understand & customise; I hope to keep it that way even after my edits).
+- more documentation (the original was easy to understand & customise; I hope to keep it that way).
 
 ## Screenshots
 
