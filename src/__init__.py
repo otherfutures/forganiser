@@ -1,6 +1,6 @@
 """
-A simply program to auto. tidy your Downloads folder (it can also run on other folders, 
-if desired). Moves loose files; leaves alone existing folders in Downloads folder.
+A simple program to auto. tidy your Downloads folder (it can also run on other folders, 
+if desired). Moves loose files; leaves existing folders alone.
 
 Program runs as follows:
     1. Show ASCII header & options
