@@ -20,7 +20,6 @@ Should work on Mac/Linux & Windows, but has only been tested on Windows.
 import os
 import sys
 import shutil
-from datetime import datetime
 from pathlib import Path
 from termcolor import colored
 
@@ -32,14 +31,15 @@ def create_folders(path):
         returns dict. of folder names & their respective filepaths
 
     N.B. If you're customising this pt., be sure to edit the move_files() func.,
-        esp. the if statements
+        esp. the if statements (it'll throw an KeyError if you forget).
     """
 
-    # '<SUBFOLDER>': os.path.join('<FOLDER>', '<SUBFOLDER>') for folders in folders
-    #   where <FOLDER> == the folder containing the subfolder
+    # '<SUBFOLDER>': os.path.join(path, '<PARENT FOLDER>') for folders in folders where
+    #   path == the Downloads folder filepath
+    #   <PARENT FOLDER> == the folder containing the subfolder
     #   & <SUBFOLDER> == subfolder name
     # os.path.join() is used instead of an abs./rel. filepath for cross OS compatibility,
-    #   but hardcoded filepaths are fine if you prefer.
+    #   but hardcoded filepaths are ok if you prefer that instead.
     folders = {
         "MUSIC": "",
         "VIDEO": "",
