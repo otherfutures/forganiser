@@ -38,19 +38,20 @@ def create_folders(path):
     # '<SUBFOLDER>': os.path.join('<FOLDER>', '<SUBFOLDER>') for folders in folders
     #   where <FOLDER> == the folder containing the subfolder
     #   & <SUBFOLDER> == subfolder name
-    # os.path.join() is used instead of an abs./rel. filepath for cross OS compatibility
+    # os.path.join() is used instead of an abs./rel. filepath for cross OS compatibility,
+    #   but hardcoded filepaths are fine if you prefer.
     folders = {
         "MUSIC": "",
         "VIDEO": "",
         "PICTURES": "",
         "APPS": "",
-        "PROGRAMS": os.path.join("APPS", "PROGRAMS"),
+        "PROGRAMS": os.path.join(path, "APPS"),
         "DOCUMENTS": "",
         "ARCHIVES": "",
-        "TV SERIES": "",
-        "SUBTITLES": os.path.join("TV SERIES", "SUBTITLES"),
+        "TV SERIES": "", # N.B. Isn't be auto. sorted
+        "SUBTITLES": os.path.join(path, "TV SERIES"),
         "EBOOKS": "",
-        "COMICS": os.path.join("EBOOKS", "COMICS"),
+        "COMICS": os.path.join(path, "EBOOKS"),
     }
     folderpaths = {}
 
@@ -58,7 +59,7 @@ def create_folders(path):
         folder_pathname = os.path.join(path, folder_name)
 
         if rel_path:
-            folder_pathname = os.path.join(path, rel_path)
+            folder_pathname = os.path.join(rel_path, folder_name)
 
         if not os.path.exists(folder_pathname):
             os.makedirs(folder_pathname)
@@ -187,9 +188,22 @@ def move_files(path, folderpaths):
                 shutil.move(filepath, folderpaths["COMICS"])
 
         except shutil.Error as e:
-            # If there is a name collision, append current date and time to filename
-            new_filepath = f"{path}{os.path.splitext(file)[0]} ({datetime.now().strftime('%Y-%m-%d %H:%M:%S')}){ext}"
+            # If there is a name collision, append no. to filename
+            new_filename = os.path.splitext(file)[0]
+            suffix = 1
+            while True:
+                new_filepath = os.path.join(path, f"{new_filename} ({suffix}){ext}")
+                if not os.path.exists(new_filepath):
+                    break
+                suffix += 1
             shutil.move(filepath, new_filepath)
+            os.remove(filepath)
+        except KeyError as e:
+            print(
+                "Please check whether dict. key name(s) in folder variable (ln. 42)"
+                " & if-statements (ln. 171-190) are matching."
+            )
+            sys.exit()
         except Exception as e:
             print(f"An error occurred while processing '{file}': {str(e)}")
 
