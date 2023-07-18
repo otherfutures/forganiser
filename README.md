@@ -1,13 +1,14 @@
 # Forganiser
 
-A nifty tool to sort your messy folders. Originally created by [@Cheesemaafia/@Jigyasu](https://github.com/cheesemaafia/forganiser). Current version: 1.2
+A nifty tool to sort your messy folders. Originally created by [@Cheesemaafia/@Jigyasu](https://github.com/cheesemaafia/forganiser). Current version: 1.3
 
 This fork improves upon it a bit in the following ways:
 
 - includes more file extensions that will be automatically sorted
 - more default folder categories/names such as ebooks, comics, & subtitles.
 - refactored to be a easier to add/remove folders if you want to customise it
-- file name collision error handling inserts current date & time into the file name (e.g. `duplicate title.jpg` would become `duplicate title (2023-01-01 12:00:00).jpg`
+- file name collision error handling
+- error handling for folder name typos/mismatches
 - stronger cross OS compatibility written into it,
 - more documentation (the original was easy to understand; I hope to keep it that way).
 
