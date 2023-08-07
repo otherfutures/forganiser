@@ -16,11 +16,13 @@ Program runs as follows:
 
 Should work on Mac/Linux & Windows, but has only been tested on Windows.    
 """
-
+# Native lib.
 import os
 import sys
 import shutil
 from pathlib import Path
+
+# 3rd party lib.
 from termcolor import colored
 
 
