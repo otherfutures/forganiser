@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="forganiser",
-    version="1.2",
+    version="1.4",
     author="otherfutures, Jigyasu",
     description="A nifty tool to sort your messy folders",
     long_description=long_description,
