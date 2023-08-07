@@ -31,15 +31,14 @@ def create_folders(path):
         returns dict. of folder names & their respective filepaths
 
     N.B. If you're customising this pt., be sure to edit the move_files() func.,
-        esp. the if statements (it'll throw an KeyError if you forget).
+        esp. the if statements
     """
 
-    # '<SUBFOLDER>': os.path.join(path, '<PARENT FOLDER>') for folders in folders where
-    #   path == the Downloads folder filepath
-    #   <PARENT FOLDER> == the folder containing the subfolder
+    # '<SUBFOLDER>': os.path.join('<FOLDER>', '<SUBFOLDER>') for folders in folders
+    #   where <FOLDER> == the folder containing the subfolder (i.e. parent folder)
     #   & <SUBFOLDER> == subfolder name
-    # os.path.join() is used instead of an abs./rel. filepath for cross OS compatibility,
-    #   but hardcoded filepaths are ok if you prefer that instead.
+    # os.path.join() is used instead of an abs./rel. filepath for cross OS compatibility
+    #   its usage is: <SUBFOLDER>: abs. path of parent folder
     folders = {
         "MUSIC": "",
         "VIDEO": "",
@@ -48,7 +47,7 @@ def create_folders(path):
         "PROGRAMS": os.path.join(path, "APPS"),
         "DOCUMENTS": "",
         "ARCHIVES": "",
-        "TV SERIES": "", # N.B. Isn't be auto. sorted
+        "TV SERIES": "",  # N.B. Isn't auto. sorted
         "SUBTITLES": os.path.join(path, "TV SERIES"),
         "EBOOKS": "",
         "COMICS": os.path.join(path, "EBOOKS"),
@@ -204,6 +203,8 @@ def move_files(path, folderpaths):
                 " & if-statements (ln. 171-190) are matching."
             )
             sys.exit()
+        except FileNotFoundError as e:
+            print(f"FileNotFoundError: Could not find file: '{filepath}'")
         except Exception as e:
             print(f"An error occurred while processing '{file}': {str(e)}")
 
