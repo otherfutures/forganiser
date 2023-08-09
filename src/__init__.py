@@ -5,7 +5,7 @@ if desired). Moves loose files; leaves existing folders alone.
 Program runs as follows:
     1. Show ASCII header & options
     2. User input/choice
-    3. Download folder sort:
+    3. Sort Downloads folder:
         3.1 Checks filepath to Downloads folder via down_path()
         3.2 Creates folders via create_folders()
         3.3 Moves files into folders via move_files() 
@@ -22,8 +22,54 @@ import sys
 import shutil
 from pathlib import Path
 
-# 3rd party lib.
-from termcolor import colored
+
+def main():
+    # ASCII art header
+    header()
+
+    # Choices for preferred folder
+    print(
+        "\033[94m[1]\033[0m to sort the Downloads folder\n"
+        "\033[94m[2]\033[0m to sort some other folder\n"
+        "\033[94m[3]\033[0m to exit\n\n"
+    )
+
+    while True:
+        choice = input("\033[94mChoice:\033[0m ").strip()  # Blue ANSI
+        if choice not in ["1", "2", "3"]:
+            print("Invalid choice. Please choose 1, 2, or 3.")
+            continue  # Loop back to asking user for input
+
+        if choice == "3":
+            print("\n")
+            sys.exit()
+
+        # Sort alt. folder
+        elif choice == "2":
+            print("\n")
+            while True:
+                path = input("\033[94mPath of the folder: \033[0m ").strip()
+                if os.path.exists(path):
+                    folderpaths = create_folders(path)
+                    move_files(path, folderpaths)
+                    break  # Exit loop if folder found
+
+        # Sort the Downloads folder
+        else:
+            if not down_path():
+                print(
+                    "Oops! Looks like your Downloads folder is not at the default location"
+                )
+                while True:
+                    path = input("\033[94mPath of the folder:\033[0m ").strip()
+                    if os.path.exists(path):
+                        break
+            else:
+                path = down_path()
+                folderpaths = create_folders(path)
+                move_files(path, folderpaths)
+
+        break  # Exit main loop
 
 
 def create_folders(path):
@@ -43,14 +89,13 @@ def create_folders(path):
     #   its usage is: <SUBFOLDER>: abs. path of parent folder
     folders = {
         "MUSIC": "",
-        "VIDEO": "",
+        "VIDEOS": "",
         "PICTURES": "",
         "APPS": "",
         "PROGRAMS": os.path.join(path, "APPS"),
         "DOCUMENTS": "",
         "ARCHIVES": "",
-        "TV SERIES": "",  # N.B. Isn't auto. sorted
-        "SUBTITLES": os.path.join(path, "TV SERIES"),
+        "SUBTITLES": "",
         "EBOOKS": "",
         "COMICS": os.path.join(path, "EBOOKS"),
     }
@@ -71,7 +116,7 @@ def create_folders(path):
 
 
 def move_files(path, folderpaths):
-    """Common file extensions & the sorting/moving of files"""
+    """Common file extensions & the sorting/moving of files into folders"""
 
     music_ext = [".mp3", ".m4a", ".wav", ".wma", ".aac", ".flac", ".alac", ".ogg"]
 
@@ -188,88 +233,30 @@ def move_files(path, folderpaths):
             elif ext in comics_ext:
                 shutil.move(filepath, folderpaths["COMICS"])
 
-        except shutil.Error as e:
-            # If there is a name collision, append no. to filename
-            new_filename = os.path.splitext(file)[0]
-            suffix = 1
-            while True:
-                new_filepath = os.path.join(path, f"{new_filename} ({suffix}){ext}")
-                if not os.path.exists(new_filepath):
-                    break
-                suffix += 1
-            shutil.move(filepath, new_filepath)
-            os.remove(filepath)
-        except KeyError as e:
+        except shutil.Error:
+            try:
+                # If there is a name collision, append counter no. to filename
+                new_filename = os.path.splitext(file)[0]
+                suffix = 1  # Init. counter to start at 1
+                while True:
+                    new_filepath = os.path.join(path, f"{new_filename} ({suffix}){ext}")
+                    if not os.path.exists(new_filepath):
+                        break
+                    suffix += 1
+                shutil.move(filepath, new_filepath)
+                os.remove(filepath)
+            except FileNotFoundError:
+                pass
+        except KeyError:
             print(
-                "Please check whether dict. key name(s) in folder variable (ln. 42)"
-                " & if-statements (ln. 171-190) are matching."
+                "Please check whether dict. key name(s) (ln. 90-99)"
+                " & if-statements (ln. 214-232) are matching"
             )
             sys.exit()
-        except FileNotFoundError as e:
+        except FileNotFoundError:
             print(f"FileNotFoundError: Could not find file: '{filepath}'")
         except Exception as e:
             print(f"An error occurred while processing '{file}': {str(e)}")
-
-
-def header():
-    header = """
-        ______                             _               
-       / ____/___  _________ _____ _____  (_)_______  _____
-      / /_  / __ \/ ___/ __ `/ __ `/ __ \/ / ___/ _ \/ ___/
-     / __/ / /_/ / /  / /_/ / /_/ / / / / (__  )  __/ /    
-    /_/    \____/_/   \__, /\__,_/_/ /_/_/____/\___/_/     
-                    /____/                                
-                                     
-    A nifty tool to sort your messy folders [MIT License]
-    """
-    print("\033[93m" + header + "\033[0m")
-
-
-def main():
-    # ASCII art header
-    header()
-
-    # choice for the preferred folder
-    print(f"{colored('[1]', 'blue')} to sort the Downloads folder")
-    print(f"{colored('[2]', 'blue')} to sort some other folder")
-    print(f"{colored('[3]', 'blue')} to exit")
-    print("\n")
-
-    while True:
-        choice = input(colored("Choice: ", "blue"))
-        if choice in ["1", "2", "3"]:
-            # exits the program
-            if choice == "3":
-                print("\n")
-                sys.exit()
-
-            # sorts the alternate folder
-            elif choice == "2":
-                print("\n")
-                while True:
-                    path = input(colored("Path of the folder: ", "blue"))
-                    if os.path.exists(path):
-                        # path for the created folders
-                        folderpaths = create_folders(path)
-                        move_files(path, folderpaths)
-                        break
-
-            # sorts the downloads folder
-            else:
-                if not down_path():
-                    print(
-                        "Oops! Looks like your Downloads folder is not at the default location"
-                    )
-                    while True:
-                        path = input(colored("Enter your path manually: ", "blue"))
-                        if os.path.exists(path):
-                            break
-                else:
-                    path = down_path()
-                    # path for the created folders
-                    folderpaths = create_folders(path)
-                    move_files(path, folderpaths)
-            break
 
 
 def down_path():
@@ -282,6 +269,20 @@ def down_path():
             return False
     except:
         return False
+
+
+def header():
+    header = """
+        ______                             _               
+       / ____/___  _________ _____ _____  (_)_______  _____
+      / /_  / __ \/ ___/ __ `/ __ `/ __ \/ / ___/ _ \/ ___/
+     / /   / /_/ / /  / /_/ / /_/ / / / / (__  )  __/ /    
+    /_/    \____/_/   \__, /\__,_/_/ /_/_/____/\___/_/     
+                     /____/                                
+                                    
+    A nifty tool to sort your messy folders [MIT License]
+    """
+    print(f"\033[93m{header}\033[0m")  # Yellow ANSI for header
 
 
 if __name__ == "__main__":
