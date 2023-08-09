@@ -1,6 +1,6 @@
 # Forganiser
 
-A nifty tool to sort your messy folders. Originally created by [@Cheesemaafia/@Jigyasu](https://github.com/cheesemaafia/forganiser). Current version: 1.4
+A nifty tool to sort your messy folders. Originally created by [@Cheesemaafia/@Jigyasu](https://github.com/cheesemaafia/forganiser). Current version: 1.5
 
 This fork improves upon it a bit in the following ways:
 
@@ -10,6 +10,7 @@ This fork improves upon it a bit in the following ways:
 - file name collision error handling
 - error handling for folder name typos/mismatches
 - stronger cross OS compatibility written into it,
+- imports only native libraries
 - more documentation (the original was easy to understand; I hope to keep it that way).
 
 ## Screenshots
