@@ -249,8 +249,8 @@ def move_files(path, folderpaths):
                 pass
         except KeyError:
             print(
-                "Please check whether dict. key name(s) (ln. 90-99)"
-                " & if-statements (ln. 214-232) are matching"
+                f"\nPlease check whether dict. key name(s) (ln. 90-99)"
+                f" & if-statements (ln. 214-232) are matching"
             )
             sys.exit()
         except FileNotFoundError:
