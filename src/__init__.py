@@ -1,6 +1,6 @@
 """
 A simple program to auto. tidy your Downloads folder (it can also run on other folders, 
-if desired). Moves loose files; leaves existing folders alone.
+if desired) by moving loose files into folders it creates; leaves existing folders alone.
 
 Program runs as follows:
     1. Show ASCII header & options
@@ -86,7 +86,7 @@ def create_folders(path):
     #   where <FOLDER> == the folder containing the subfolder (i.e. parent folder)
     #   & <SUBFOLDER> == subfolder name
     # os.path.join() is used instead of an abs./rel. filepath for cross OS compatibility
-    #   its usage is: <SUBFOLDER>: abs. path of parent folder
+    #   but abs. path can still be used: i.e. <SUBFOLDER>: abs. path of parent folder
     folders = {
         "MUSIC": "",
         "VIDEOS": "",
@@ -205,7 +205,7 @@ def move_files(path, folderpaths):
 
     comics_ext = [".cbr", ".cbz"]
 
-    unorg_files = os.listdir(path)  # Loose files in Downloads folder
+    unorg_files = os.listdir(path)  # Loose files in Downloads/user input folder
 
     for file in unorg_files:
         filepath = f"{path}{os.path.sep}{file}"
@@ -276,7 +276,7 @@ def header():
         ______                             _               
        / ____/___  _________ _____ _____  (_)_______  _____
       / /_  / __ \/ ___/ __ `/ __ `/ __ \/ / ___/ _ \/ ___/
-     / /   / /_/ / /  / /_/ / /_/ / / / / (__  )  __/ /    
+     / __/ / /_/ / /  / /_/ / /_/ / / / / (__  )  __/ /    
     /_/    \____/_/   \__, /\__,_/_/ /_/_/____/\___/_/     
                      /____/                                
                                     

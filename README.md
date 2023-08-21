@@ -1,8 +1,8 @@
 # Forganiser
 
-A nifty tool to sort your messy folders. Originally created by [@Cheesemaafia/@Jigyasu](https://github.com/cheesemaafia/forganiser). Current version: 1.5
+A nifty tool to sort your messy files. Originally created by [@Cheesemaafia/@Jigyasu](https://github.com/cheesemaafia/forganiser). Current version: 1.6
 
-This fork improves upon it a bit in the following ways:
+This fork improves a bit upon the original in the following ways:
 
 - includes more file extensions that will be automatically sorted
 - more default folder categories/names such as ebooks, comics, & subtitles.
@@ -19,14 +19,14 @@ This fork improves upon it a bit in the following ways:
 
 ## Documentation
 
-Forganiser is a fast and lightweight folder sorter. It is written entirely in Python and mostly uses modules that come pre-installed with it.
+Forganiser is a fast and lightweight folder sorter. It is written entirely in Python and mostly uses native libraries.
 
-It sorts the downloads folder or to sort some other folder depending on user input.
+It sorts the downloads folder or some other folder depending on user input.
 
 If the user chooses to sort the downloads folder, it automatically detects the path on the operating system and prompts to enter the path to downloads manually if it's not located at the default location.
 
 Users can choose the second option and directly provide the path to any other folder that they want to sort, any path provided passes through some checks to confirm if the destination actually exists on the system and if it doesn't then the user gets a reprompt.
 
-After a path is selected, the program creates several subfolders inside the folder namely Music, Videos, Pictures, Documents, Application and Archives, etc.
+After a path is selected, the program creates several subfolders inside the folder namely Music, Videos, Pictures, Documents, Application, and Archives, etc.
 
 It then sorts all the files present in the parent folder into several different groups based on their extensions and moves them in the respective subfolders.
