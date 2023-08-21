@@ -118,9 +118,9 @@ def create_folders(path):
 def move_files(path, folderpaths):
     """Common file extensions & the sorting/moving of files into folders"""
 
-    music_ext = [".mp3", ".m4a", ".wav", ".wma", ".aac", ".flac", ".alac", ".ogg"]
+    music_ext = {".mp3", ".m4a", ".wav", ".wma", ".aac", ".flac", ".alac", ".ogg"}
 
-    videos_ext = [
+    videos_ext = {
         ".mp4",
         ".3gp",
         ".webm",
@@ -133,9 +133,9 @@ def move_files(path, folderpaths):
         ".wmv",
         ".flv",
         ".ogg",
-    ]
+    }
 
-    pictures_ext = [
+    pictures_ext = {
         ".png",
         ".jpg",
         ".jpeg",
@@ -153,9 +153,9 @@ def move_files(path, folderpaths):
         ".nef",
         ".orf",
         ".avif",
-    ]
+    }
 
-    programs_ext = [
+    programs_ext = {
         ".py",
         ".java",
         ".c",
@@ -178,9 +178,9 @@ def move_files(path, folderpaths):
         ".class",
         ".jar",
         ".dll",
-    ]
+    }
 
-    documents_ext = [
+    documents_ext = {
         ".pdf",
         ".doc",
         ".docx",
@@ -193,17 +193,17 @@ def move_files(path, folderpaths):
         ".htm",
         ".rtf",
         ".odt",
-    ]
+    }
 
-    applications_ext = [".exe", ".apk", ".deb", ".app", ".msi", ".dmg", ".rpm"]
+    applications_ext = {".exe", ".apk", ".deb", ".app", ".msi", ".dmg", ".rpm"}
 
-    archives_ext = [".zip", ".rar", ".7z", ".tar", ".gz", ".bz2"]
+    archives_ext = {".zip", ".rar", ".7z", ".tar", ".gz", ".bz2"}
 
-    subtitles_ext = [".srt", ".sub", ".ass", ".vtt", ".stl"]
+    subtitles_ext = {".srt", ".sub", ".ass", ".vtt", ".stl"}
 
-    ebooks_ext = [".epub", ".mobi", ".djv", ".azw", ".azw3", ".prc"]
+    ebooks_ext = {".epub", ".mobi", ".djv", ".azw", ".azw3", ".prc"}
 
-    comics_ext = [".cbr", ".cbz"]
+    comics_ext = {".cbr", ".cbz"}
 
     unorg_files = os.listdir(path)  # Loose files in Downloads/user input folder
 
