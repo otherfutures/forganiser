@@ -11,6 +11,7 @@ This fork improves a bit upon the original in the following ways:
 - error handling for folder name typos/mismatches
 - stronger cross OS compatibility written into it,
 - imports only native libraries
+- uses sets instead of lists (in practice, however, the original felt instantaneous)
 - more documentation (the original was easy to understand; I hope to keep it that way).
 
 ## Screenshots
@@ -19,7 +20,7 @@ This fork improves a bit upon the original in the following ways:
 
 ## Documentation
 
-Forganiser is a fast and lightweight folder sorter. It is written entirely in Python and mostly uses native libraries.
+Forganiser is a fast and lightweight folder sorter. It is written entirely in Python and uses native libraries.
 
 It sorts the downloads folder or some other folder depending on user input.
 
